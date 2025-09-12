@@ -149,8 +149,9 @@
     <script>
       async function fetchWeather(city) {
         try {
-          const appApiUrl = "{{APP_API_URL}}";
-          const response = await fetch(`${appApiUrl}/weather?city=${city}`);
+          const response = await fetch(
+            `http:///weather?city=${city}`
+          );
           if (response.status === 200) {
             return await response.json();
           } else {
