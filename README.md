@@ -42,13 +42,13 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 
 ### 2. Frontend:
 
-  **• HTML:** Provides the structure of the web page.
+  - **HTML:** Provides the structure of the web page.
 
-  **• CSS:** Used for custom styling to give the app a unique look and feel.
+  - **CSS:** Used for custom styling to give the app a unique look and feel.
 
-  **• Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
+  - **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
 
-  **• JavaScript:** Handles all client-side logic, including fetching data from the backend and dynamically updating the UI.
+  - **JavaScript:** Handles all client-side logic, including fetching data from the backend and dynamically updating the UI.
 
 ---
 
@@ -72,7 +72,7 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 
 ## ⚙️ How It Works
 
-**The application follows a client-server architecture:**
+### The application follows a client-server architecture:
 
   **1. User Input:** The user enters a city name into the input field on the index.html page and submits the form.
 
@@ -90,13 +90,13 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 
 ## 🔮 Future Enhancements
 
-• User authentication
+- User authentication
 
-• Personalized weather dashboards
+- Personalized weather dashboards
 
-• Historical weather data analysis
+- Historical weather data analysis
 
-• Real-time weather alerts
+- Real-time weather alerts
 
 ---
 
@@ -105,11 +105,11 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
-   • Node.js (LTS version recommended)
+   - Node.js (LTS version recommended)
    
-   • npm (comes with Node.js)
+   - npm (comes with Node.js)
    
-   • A Tomorrow.io API key (get one from the official Tomorrow.io website)
+   - A Tomorrow.io API key (get one from the official Tomorrow.io website)
 
 ### Installation
 
