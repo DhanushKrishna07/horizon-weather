@@ -76,7 +76,7 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 
   **1. User Input:** The user enters a city name into the input field on the index.html page and submits the form.
 
-  **2. Frontend Request:** The JavaScript code on the frontend sends a GET request to the backend server's /weather endp**oint, passing the city name as a query parameter.
+  **2. Frontend Request:** The JavaScript code on the frontend sends a GET request to the backend server's /weather endpoint, passing the city name as a query parameter.
 
   **3. Backend Processing:** The Node.js server (script.js) receives the request. It uses the city name and the API key (from the .env file) to make a request to the Tomorrow.io weather API.
 
