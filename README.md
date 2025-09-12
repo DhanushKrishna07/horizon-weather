@@ -127,7 +127,9 @@ npm install
 ```
 
 **3. Set up environment variables:**
+
 Create a .env file in the root directory of your project and add your API key:
+
 ```bash
 API_KEY=your_tomorrow_io_api_key_here
 ```
