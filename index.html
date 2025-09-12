@@ -149,9 +149,8 @@
     <script>
       async function fetchWeather(city) {
         try {
-          const response = await fetch(
-            `/weather?city=${city}`
-          );
+          const appApiUrl = "{{APP_API_URL}}";
+          const response = await fetch(`${appApiUrl}/weather?city=${city}`);
           if (response.status === 200) {
             return await response.json();
           } else {
@@ -264,4 +263,5 @@
     </script>
   </body>
 </html>
+
 
