@@ -150,7 +150,7 @@
       async function fetchWeather(city) {
         try {
           const response = await fetch(
-            `http://localhost:3000/weather?city=${city}`
+            `/weather?city=${city}`
           );
           if (response.status === 200) {
             return await response.json();
@@ -264,3 +264,4 @@
     </script>
   </body>
 </html>
+
