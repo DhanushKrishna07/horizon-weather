@@ -2,7 +2,6 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
@@ -96,6 +95,7 @@ app.listen(PORT, async () => {
   const open = (await import("open")).default;
   open(`http://localhost:${PORT}`);
 });
+
 
 
 
