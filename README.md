@@ -147,7 +147,9 @@ node script.js
 The server will start on http://localhost:3000.
 
 **2. Access the Application:**
+
 Open your web browser and go to http://localhost:3000. This will load the index.html file that is being served by your Express.js server and allow the frontend to communicate with the backend.
 
 **3. Use the App:**
+
 Enter a city name in the search box and click "Get Weather" to see the forecast.
