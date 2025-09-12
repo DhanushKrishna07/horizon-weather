@@ -77,15 +77,7 @@ function convertWindDirection(degrees) {
 }
 
 app.get("/", (req, res) => {
-  fs.readFile(path.join(__dirname, "index.html"), "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-    }
-    const apiUrl = process.env.APP_API_URL;
-    const modifiedHtml = data.replace("{{APP_API_URL}}", apiUrl);
-    res.send(modifiedHtml);
-  });
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Default route handler
@@ -104,5 +96,6 @@ app.listen(PORT, async () => {
   const open = (await import("open")).default;
   open(`http://localhost:${PORT}`);
 });
+
 
 
