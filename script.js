@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
@@ -76,7 +77,15 @@ function convertWindDirection(degrees) {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  fs.readFile(path.join(__dirname, "index.html"), "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    }
+    const apiUrl = process.env.APP_API_URL || `http://localhost:${PORT}`;
+    const modifiedHtml = data.replace("{{APP_API_URL}}", apiUrl);
+    res.send(modifiedHtml);
+  });
 });
 
 // Default route handler
@@ -95,3 +104,4 @@ app.listen(PORT, async () => {
   const open = (await import("open")).default;
   open(`http://localhost:${PORT}`);
 });
+
