@@ -82,7 +82,7 @@ app.get("/", (req, res) => {
       console.error(err);
       return res.status(500).send("Internal Server Error");
     }
-    const apiUrl = process.env.APP_API_URL || `http://localhost:${PORT}`;
+    const apiUrl = process.env.APP_API_URL;
     const modifiedHtml = data.replace("{{APP_API_URL}}", apiUrl);
     res.send(modifiedHtml);
   });
@@ -104,4 +104,5 @@ app.listen(PORT, async () => {
   const open = (await import("open")).default;
   open(`http://localhost:${PORT}`);
 });
+
 
