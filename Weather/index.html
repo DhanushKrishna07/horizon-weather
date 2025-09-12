@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+
+    <!-- Include Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom styles */
+      /* Custom body background image */
+      .custom-body-bg {
+        background-image: url("sss.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Search bar container */
+      .search-container {
+        position: relative;
+        width: 300px;
+        margin: 50px auto;
+      }
+
+      /* Search input */
+      .search-input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #333;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        animation: glow 2s infinite alternate;
+      }
+
+      /* Search input focus */
+      .search-input:focus {
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      }
+
+      /* Glow effect */
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 10px 0 rgba(205, 135, 135, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 20px 10px rgba(178, 105, 200, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 10px 0 rgba(196, 226, 136, 0.5);
+        }
+      }
+
+      /* Radiant color for glow */
+      .radiant-glow {
+        animation: glow 10s infinite alternate;
+      }
+
+      .weather {
+        text-align: center;
+      }
+
+      /* Weather icon */
+      .weather-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+      }
+
+      /* Tooltip container */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      /* Tooltip text */
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      /* Tooltip text visible on hover */
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Outer box glow */
+      .outer-box {
+        animation: glow 2s infinite alternate;
+      }
+      /*  .icon {
+        padding: 0%;
+        padding-left: 0cap;
+      }*/
+    </style>
+  </head>
+  <body class="custom-body-bg">
+    <div
+      class="container mx-auto my-20 p-8 bg-gray-200 bg-opacity-70 rounded-lg relative outer-box text-center"
+    >
+      <h1 class="font-bold text-3xl text-green-800 mb-6">Weather App</h1>
+      <form id="weatherForm" class="mb-6 search-container">
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Enter city name"
+          required
+          class="w-full px-4 py-2 rounded-md border border-black-800 focus:outline-none focus:border-green-500 search-input radiant-glow"
+        />
+        <button
+          type="submit"
+          class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+        >
+          Get Weather
+        </button>
+      </form>
+      <div
+        id="weatherInfo"
+        class="text-lg w-full flex justify-between space-x-2"
+      ></div>
+    </div>
+    
+      &darr;
+    </div>
+
+    <script>
+      async function fetchWeather(city) {
+        try {
+          const response = await fetch(
+            `http://localhost:3000/weather?city=${city}`
+          );
+          if (response.status === 200) {
+            return await response.json();
+          } else {
+            throw new Error("No City found please enter a correct city.");
+          }
+        } catch (error) {
+          console.error("Error fetching weather data:", error);
+          throw new Error(
+            error ?? "An error occurred while fetching weather data."
+          );
+        }
+      }
+
+      const addWeatherIcon = (
+        parent,
+        { day, weatherCode, temperature, humidity }
+      ) => {
+        const weatherCodeLookup = {
+          0: "Unknown",
+          1000: "Clear, Sunny",
+          1100: "Mostly Clear",
+          1101: "Partly Cloudy",
+          1102: "Mostly Cloudy",
+          1001: "Cloudy",
+          2000: "Fog",
+          2100: "Light Fog",
+          4000: "Drizzle",
+          4001: "Rain",
+          4200: "Light Rain",
+          4201: "Heavy Rain",
+          5000: "Snow",
+          5001: "Flurries",
+          5100: "Light Snow",
+          5101: "Heavy Snow",
+          6000: "Freezing Drizzle",
+          6001: "Freezing Rain",
+          6200: "Light Freezing Rain",
+          6201: "Heavy Freezing Rain",
+          7000: "Ice Pellets",
+          7101: "Heavy Ice Pellets",
+          7102: "Light Ice Pellets",
+          8000: "Thunderstorm",
+        };
+        const weather = weatherCodeLookup[weatherCode];
+
+        // Display weather icon
+        const weatherDiv = document.createElement("div");
+        weatherDiv.classList.add("weather");
+        const weekdayDiv = document.createElement("div");
+        const weatherIcon = document.createElement("img");
+        const temperatureDiv = document.createElement("div");
+        weatherIcon.src = `${weatherCode}.jpeg`;
+        weatherIcon.alt = weather;
+        weatherIcon.className = "weather-icon";
+        weekdayDiv.innerHTML = day;
+        temperatureDiv.innerHTML = `${temperature}°C`;
+        weatherDiv.appendChild(weekdayDiv);
+        weatherDiv.appendChild(weatherIcon);
+        weatherDiv.appendChild(temperatureDiv);
+        parent.appendChild(weatherDiv);
+
+        // Create tooltip for weather details
+        // const tooltipContainer = document.createElement("div");
+        // tooltipContainer.className = "tooltip";
+        // const tooltipText = document.createElement("span");
+        // tooltipText.className = "tooltiptext";
+        // tooltipText.innerText = `Temperature: ${temperature}°C\nHumidity: ${humidity}%`;
+        // tooltipContainer.appendChild(tooltipText);
+        // parent.appendChild(tooltipContainer);
+      };
+
+      const displayWeatherInfo = (data) => {
+        const weatherInfoElement = document.getElementById("weatherInfo");
+        weatherInfoElement.innerHTML = ""; // Clear previous content
+
+        const days = {
+          0: "Sunday",
+          1: "Monday",
+          2: "Tuesday",
+          3: "Wednesday",
+          4: "Thursday",
+          5: "Friday",
+          6: "Saturday",
+        };
+        data?.forEach(({ time, ...params }) => {
+          addWeatherIcon(weatherInfoElement, {
+            day: days[new Date(time).getDay()],
+            ...params,
+          });
+        });
+      };
+
+      document
+        .getElementById("weatherForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const city = document.getElementById("cityInput").value;
+          try {
+            const data = await fetchWeather(city);
+            displayWeatherInfo(data);
+          } catch (error) {
+            document.getElementById("weatherInfo").innerText = error.message;
+          }
+        });
+
+      const scrollBtn = document.querySelector(".scroll-btn");
+      scrollBtn.addEventListener("click", () => {
+        document.querySelector(".container").classList.toggle("smaller");
+      });
+    </script>
+  </body>
+</html>
