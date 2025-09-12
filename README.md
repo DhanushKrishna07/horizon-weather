@@ -28,27 +28,27 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 
 ## 🛠️ Tech Stack
 
-**1. Backend:**
+### 1. Backend:
 
-  **Node.js:** The JavaScript runtime environment for building the server.
+  - **Node.js:** The JavaScript runtime environment for building the server.
 
-  **Express.js:** A fast, unopinionated, minimalist web framework for Node.js, used to create the server and handle API requests.
+  - **Express.js:** A fast, unopinionated, minimalist web framework for Node.js, used to create the server and handle API requests.
 
-  **Axios:** A promise-based HTTP client for making API calls from the backend to the Tomorrow.io service.
+  - **Axios:** A promise-based HTTP client for making API calls from the backend to the Tomorrow.io service.
 
-  **CORS:** A Node.js package that provides a middleware to enable Cross-Origin Resource Sharing.
+  - **CORS:** A Node.js package that provides a middleware to enable Cross-Origin Resource Sharing.
 
-  **dotenv:** A zero-dependency module that loads environment variables from a .env file, keeping sensitive data like your API key secure.
+  - **dotenv:** A zero-dependency module that loads environment variables from a .env file, keeping sensitive data like your API key secure.
 
-**2. Frontend:**
+### 2. Frontend:
 
-  **HTML:** Provides the structure of the web page.
+  **• HTML:** Provides the structure of the web page.
 
-  **CSS:** Used for custom styling to give the app a unique look and feel.
+  **• CSS:** Used for custom styling to give the app a unique look and feel.
 
-  **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
+  **• Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
 
-  **JavaScript:** Handles all client-side logic, including fetching data from the backend and dynamically updating the UI.
+  **• JavaScript:** Handles all client-side logic, including fetching data from the backend and dynamically updating the UI.
 
 ---
 
@@ -89,6 +89,7 @@ You can experience the interactive website live here: [**🌦️Horizon-Weather*
 ---
 
 ## 🔮 Future Enhancements
+
 • User authentication
 
 • Personalized weather dashboards
@@ -105,7 +106,9 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
    • Node.js (LTS version recommended)
+   
    • npm (comes with Node.js)
+   
    • A Tomorrow.io API key (get one from the official Tomorrow.io website)
 
 ### Installation
@@ -126,7 +129,7 @@ npm install
 **3. Set up environment variables:**
 Create a .env file in the root directory of your project and add your API key:
 ```bash
-API_KEY=your_tomorrow_io_api_key
+API_KEY=your_tomorrow_io_api_key_here
 ```
 
 ### Running the Application
@@ -141,8 +144,8 @@ node script.js
 ```
 The server will start on http://localhost:3000.
 
-**2. Open the frontend:**
-Open the index.html file in your web browser.
+**2. Access the Application:**
+Open your web browser and go to http://localhost:3000. This will load the index.html file that is being served by your Express.js server and allow the frontend to communicate with the backend.
 
 **3. Use the App:**
 Enter a city name in the search box and click "Get Weather" to see the forecast.
