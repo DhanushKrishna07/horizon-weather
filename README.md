@@ -1,6 +1,6 @@
 # 🌦️ Horizon-Weather — Real-Time Weather Forecasting with Node.js & Express.js
 
-A web application that provides real-time and location-based weather forecasts using the **Tomorrow.io API**. Built with **Node.js** and **Express.js**, it offers a user-friendly and responsive interface for easy access to weather data.
+A web application that provides real-time and location-based weather forecasts using the **Tomorrow.io AP**. Built with **Node.js** and **Express.js**, it offers a user-friendly and responsive interface for easy access to weather data.
 
 ---
 
